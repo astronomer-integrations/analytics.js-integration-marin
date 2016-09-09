@@ -4,7 +4,7 @@
   "description": "An analytics.js integration for Marin",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "make test"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,26 @@
   "bugs": {
     "url": "https://github.com/astronomerio/analytics.js-integration-marin/issues"
   },
-  "homepage": "https://github.com/astronomerio/analytics.js-integration-marin#readme"
+  "homepage": "https://github.com/astronomerio/analytics.js-integration-marin#readme",
+  "dependencies": {
+    "@segment/analytics.js-integration": "^3.1.0"
+  },
+  "devDependencies": {
+    "@segment/analytics.js-core": "^3.0.0",
+    "@segment/analytics.js-integration-tester": "^3.1.0",
+    "browserify": "^13.1.0",
+    "browserify-istanbul": "^2.0.0",
+    "eslint": "^3.4.0",
+    "karma": "^1.2.0",
+    "karma-browserify": "^5.1.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage": "^1.1.1",
+    "karma-junit-reporter": "^1.1.0",
+    "karma-mocha": "^1.1.1",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-spec-reporter": "0.0.26",
+    "mocha": "^3.0.2",
+    "phantomjs-prebuilt": "^2.1.12",
+    "watchify": "^3.7.0"
+  }
 }
