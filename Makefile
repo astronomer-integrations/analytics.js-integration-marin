@@ -62,7 +62,7 @@ distclean: clean
 
 # Lint JavaScript source files.
 lint: install
-		@$(ESLINT) $(ALL_FILES)
+		@$(ESLINT) $(LIBS) $(TESTS)
 .PHONY: lint
 
 # Attempt to fix linting errors.
