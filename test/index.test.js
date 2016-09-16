@@ -28,5 +28,4 @@ describe('Marin', function() {
     it('should have the correct settings', function() {
         analytics.compare(Marin, integration('Marin'));
     });
-
 });
