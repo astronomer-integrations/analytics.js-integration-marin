@@ -9,20 +9,20 @@ var mapProduct = require('../lib/util/mapProduct');
 
 var segmentProduct = {
   order_id: 'orderId',
-  convType : '<CONV-TYPE-ID>',
-  name : '<PRODUCT-SKU/NAME>',
-  price : '<PRICE>',
-  category : '<CATEGORY>',
-  quantity : '<QUANTITY>'
+  convType : 'gold membership',
+  name : 'Membership Gold',
+  price : '4.99',
+  category : 'memberships',
+  quantity : '1'
 };
 
 var expectedProduct = {
   orderId: 'orderId',
-  convType : '<CONV-TYPE-ID>',
-  product : '<PRODUCT-SKU/NAME>',
-  price : '<PRICE>',
-  category : '<CATEGORY>',
-  quantity : '<QUANTITY>'
+  convType : 'gold membership',
+  product : 'Membership Gold',
+  price : '4.99',
+  category : 'memberships',
+  quantity : '1'
 };
 
 describe('Marin', function() {
@@ -83,7 +83,30 @@ describe('Marin', function() {
       beforeEach(function() {
         analytics.stub(window._mTrack, 'push');
       });
-    })
+
+      it('should call track', function() {
+        analytics.stub(marin, '_processOrders');
+        analytics.track('My Custom Event', {
+          products: [segmentProduct]
+        });
+
+        analytics.called(window._mTrack.push, [
+          'addTrans', { 
+            currency: 'USD', 
+            items: [expectedProduct]
+          }]);
+
+        analytics.called(marin._processOrders);
+      });
+
+      it('should process orders', function() {
+        var scriptCount = document.getElementsByTagName('script').length;
+        marin._processOrders();
+        analytics.called(window._mTrack.push, ['processOrders']);
+        var newScriptCount = document.getElementsByTagName('script').length;
+        analytics.equal(scriptCount + 1, newScriptCount);
+      });
+    });
   });
 
   it('should map product to marin format', function() {
