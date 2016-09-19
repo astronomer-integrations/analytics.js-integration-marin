@@ -84,9 +84,9 @@ describe('Marin', function() {
         analytics.stub(window._mTrack, 'push');
       });
 
-      it('should call track', function() {
+      it('should call order completed', function() {
         analytics.stub(marin, '_processOrders');
-        analytics.track('My Custom Event', {
+        analytics.track('Order Completed', {
           products: [segmentProduct]
         });
 
